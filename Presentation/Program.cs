@@ -1,5 +1,6 @@
 
 using Core.Utilities.Security.TokenEntities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Presentation
 {
@@ -13,6 +14,7 @@ namespace Presentation
 
             var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

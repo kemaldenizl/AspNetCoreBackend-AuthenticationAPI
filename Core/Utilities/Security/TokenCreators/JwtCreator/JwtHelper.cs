@@ -1,5 +1,6 @@
 ﻿using Core.Entities.Abstract;
 using Core.Extensions;
+using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.TokenEntities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -58,7 +59,7 @@ namespace Core.Utilities.Security.TokenCreators.JwtCreator
 
         public AccessToken CreateToken(TUser user, List<TOperationClaim> operationClaims)
         {
-            
+            var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
         }
     }
 }

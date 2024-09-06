@@ -12,6 +12,6 @@ namespace Core.Utilities.Security.TokenCreators
         where TUser : class, IEntity, new() 
         where TOperationClaim : class, IEntity, new()
     {
-        
+        AccessToken CreateToken(TUser user, List<TOperationClaim> operationClaims);
     }
 }

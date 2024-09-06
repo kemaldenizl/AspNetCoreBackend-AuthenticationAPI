@@ -20,17 +20,17 @@ namespace Business.Concrete
 
         public void Add(User user)
         {
-            throw new NotImplementedException();
+            _userDal.Add(user);
         }
 
         public User GetByMail(string email)
         {
-            throw new NotImplementedException();
+            return _userDal.Get(u => u.Email == email);
         }
 
         public List<OperationClaim> GetClaims(User user)
         {
-            throw new NotImplementedException();
+            return _userDal.GetClaims(user);
         }
     }
 }

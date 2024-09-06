@@ -47,6 +47,12 @@ namespace Presentation.Controllers
 
             var result = _authService.CreateAccessToken(registerResult.Data);
 
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+
+            return BadRequest(result.Message);
         }
     }
 }

@@ -31,7 +31,13 @@ namespace Core.Utilities.Security.TokenCreators.JwtCreator
             var firstname = typeof(TUser).GetProperty("FirstName")?.GetValue(user)?.ToString();
             var lastname = typeof(TUser).GetProperty("LastName")?.GetValue(user)?.ToString();
 
-            
+            var claims = new List<Claim>();
+            claims.AddNameIdentifier(id);
+            claims.AddEmail(email);
+            claims.AddName($"{firstname} {lastname}");
+            claims.AddRoles(operationClaims.Select(c => typeof(TOperationClaim).GetProperty("Name")?.GetValue(c)?.ToString()).ToArray());
+
+            return claims;
         }
 
         public AccessToken CreateToken(TUser user, List<TOperationClaim> operationClaims)

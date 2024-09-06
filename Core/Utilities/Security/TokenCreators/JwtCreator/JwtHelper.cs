@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 
 namespace Core.Utilities.Security.TokenCreators.JwtCreator
 {
-    public class JwtHelper<TUser, TOperationClaim> : ITokenHelper<TUser, TOperationClaim>
+    public class JwtHelper<TUser, TOperationClaim, TClaim> : ITokenHelper<TUser, TOperationClaim>
         where TUser : class, IEntity, new()
         where TOperationClaim : class, IEntity, new()
+        where TClaim : class, IEntity, new()
     {
         public IConfiguration Configuration { get; }
         private TokenOptions _tokenOptions;
@@ -21,6 +22,11 @@ namespace Core.Utilities.Security.TokenCreators.JwtCreator
             Configuration = configuration;
             _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
             _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
+        }
+
+        private IEnumerable<TClaim> SetClaims(TUser user, List<TOperationClaim> operationClaims)
+        {
+
         }
 
         public AccessToken CreateToken(TUser user, List<TOperationClaim> operationClaims)

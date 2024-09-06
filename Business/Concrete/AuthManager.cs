@@ -54,7 +54,8 @@ namespace Business.Concrete
 
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto)
         {
-            throw new NotImplementedException();
+            byte[] passworHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(userForRegisterDto.Password, out passworHash, out passwordSalt);
         }
 
         public IResult UserExist(string email)

@@ -1,4 +1,7 @@
 
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Business.DependencyResolvers.Autofac;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.TokenEntities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -36,6 +39,13 @@ namespace Presentation
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Host
+            .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+            .ConfigureContainer<ContainerBuilder>(builder => 
+            { 
+                builder.RegisterModule(new AutofacBusinessModule()); 
+            });
 
             var app = builder.Build();
 

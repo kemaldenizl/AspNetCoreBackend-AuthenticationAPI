@@ -58,7 +58,7 @@ namespace Core.Utilities.Security.TokenCreators.JwtCreator
 
         public AccessToken CreateToken(TUser user, List<TOperationClaim> operationClaims)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

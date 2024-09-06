@@ -10,4 +10,11 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Utilities\Security\Encryption\" />
+    <Folder Include="Utilities\Security\Hashing\" />
+    <Folder Include="Utilities\Security\TokenCreators\JwtCreator\" />
+    <Folder Include="Utilities\Security\TokenEntities\" />
+  </ItemGroup>
+
 </Project>

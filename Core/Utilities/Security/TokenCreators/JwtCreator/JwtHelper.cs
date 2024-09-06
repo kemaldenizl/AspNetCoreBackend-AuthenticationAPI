@@ -60,6 +60,7 @@ namespace Core.Utilities.Security.TokenCreators.JwtCreator
         public AccessToken CreateToken(TUser user, List<TOperationClaim> operationClaims)
         {
             var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
+            var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey);
         }
     }
 }

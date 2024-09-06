@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete.DataResultTypes;
 using Core.Utilities.Security.TokenCreators;
 using Core.Utilities.Security.TokenEntities;
 using Entities.Concrete;
@@ -25,7 +27,10 @@ namespace Business.Concrete
 
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
-            throw new NotImplementedException();
+            var claims = _userService.GetClaims(user);
+            var accessToken = _tokenHelper.CreateToken(user,claims);
+            
+            return new SuccessDataResult<AccessToken>(accessToken,Messages.AccessTokenCreated);
         }
 
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)

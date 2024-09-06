@@ -1,8 +1,11 @@
 ﻿using Core.Entities.Abstract;
+using Core.Extensions;
 using Core.Utilities.Security.TokenEntities;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -38,6 +41,11 @@ namespace Core.Utilities.Security.TokenCreators.JwtCreator
             claims.AddRoles(operationClaims.Select(c => typeof(TOperationClaim).GetProperty("Name")?.GetValue(c)?.ToString()).ToArray());
 
             return claims;
+        }
+
+        private JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions, TUser user, SigningCredentials signingCredentials, List<TOperationClaim> operationClaims)
+        {
+            
         }
 
         public AccessToken CreateToken(TUser user, List<TOperationClaim> operationClaims)

@@ -43,7 +43,10 @@ namespace Presentation.Controllers
                 return BadRequest(userExists.Message);
             }
 
-            
+            var registerResult = _authService.Register(userForRegisterDto);
+
+            var result = _authService.CreateAccessToken(registerResult.Data);
+
         }
     }
 }

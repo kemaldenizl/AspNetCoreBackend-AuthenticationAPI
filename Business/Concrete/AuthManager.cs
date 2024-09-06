@@ -2,6 +2,7 @@
 using Business.Constants;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete.DataResultTypes;
+using Core.Utilities.Results.Concrete.ResultTypes;
 using Core.Utilities.Security.TokenCreators;
 using Core.Utilities.Security.TokenEntities;
 using Entities.Concrete;
@@ -45,7 +46,12 @@ namespace Business.Concrete
 
         public IResult UserExist(string email)
         {
-            throw new NotImplementedException();
+            if (_userService.GetByMail(email) != null)
+            {
+                return new ErrorResult(Messages.UserAlreadyExists);
+            }
+
+            return new SuccessResult();
         }
     }
 }

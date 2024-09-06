@@ -45,7 +45,15 @@ namespace Core.Utilities.Security.TokenCreators.JwtCreator
 
         private JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions, TUser user, SigningCredentials signingCredentials, List<TOperationClaim> operationClaims)
         {
-            
+            var jwt = new JwtSecurityToken(
+                issuer: tokenOptions.Issuer,
+                audience: tokenOptions.Audience,
+                expires: _accessTokenExpiration,
+                notBefore: DateTime.Now,
+                claims: SetClaims(user, operationClaims),
+                signingCredentials: signingCredentials
+            );
+            return jwt;
         }
 
         public AccessToken CreateToken(TUser user, List<TOperationClaim> operationClaims)

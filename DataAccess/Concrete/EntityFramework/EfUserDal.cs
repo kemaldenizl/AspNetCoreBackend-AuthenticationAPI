@@ -14,7 +14,16 @@ namespace DataAccess.Concrete.EntityFramework
     {
         public List<OperationClaim> GetClaims(User user)
         {
-            throw new NotImplementedException();
+            using (var context = new AuthenticationDemoContext())
+            {
+                var result = from operationClaim in context.OperationClaims
+                             join UserOperationClaim in context.UserOperationClaims
+                             on operationClaim.Id equals UserOperationClaim.OperationClaimId
+                             where UserOperationClaim.UserId == user.Id
+                             select new OperationClaim { Id = operationClaim.Id, Name = operationClaim.Name };
+
+                return result.ToList();
+            }
         }
     }
 }

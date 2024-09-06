@@ -56,6 +56,16 @@ namespace Business.Concrete
         {
             byte[] passworHash, passwordSalt;
             HashingHelper.CreatePasswordHash(userForRegisterDto.Password, out passworHash, out passwordSalt);
+
+            var user = new User
+            {
+                Email = userForRegisterDto.Email,
+                FirstName = userForRegisterDto.FirstName,
+                LastName = userForRegisterDto.LastName,
+                PasswordHash = passworHash,
+                PasswordSalt = passwordSalt,
+                Status = true
+            };
         }
 
         public IResult UserExist(string email)

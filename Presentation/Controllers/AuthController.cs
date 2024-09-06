@@ -32,5 +32,18 @@ namespace Presentation.Controllers
             }
             return BadRequest(result.Message);
         }
+
+        [HttpPost("register")]
+        public ActionResult Register(UserForRegisterDto userForRegisterDto)
+        {
+            var userExists = _authService.UserExist(userForRegisterDto.Email);
+
+            if (!userExists.Success)
+            {
+                return BadRequest(userExists.Message);
+            }
+
+            
+        }
     }
 }

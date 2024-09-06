@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Utilities\Security\Encryption\" />
     <Folder Include="Utilities\Security\Hashing\" />
   </ItemGroup>
 

@@ -1,6 +1,9 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results.Abstract;
 using Core.Utilities.Security.TokenCreators;
+using Core.Utilities.Security.TokenEntities;
 using Entities.Concrete;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +21,26 @@ namespace Business.Concrete
         {
             _userService = userService;
             _tokenHelper = tokenHelper;
+        }
+
+        public IDataResult<AccessToken> CreateAccessToken(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDataResult<User> Login(UserForLoginDto userForLoginDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDataResult<User> Register(UserForRegisterDto userForRegisterDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IResult UserExist(string email)
+        {
+            throw new NotImplementedException();
         }
     }
 }

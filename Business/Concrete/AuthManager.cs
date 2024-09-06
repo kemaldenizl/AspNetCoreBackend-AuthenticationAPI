@@ -36,7 +36,9 @@ namespace Business.Concrete
 
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
-            throw new NotImplementedException();
+            
+
+
         }
 
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto)

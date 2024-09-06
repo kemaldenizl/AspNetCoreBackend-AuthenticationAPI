@@ -1,4 +1,6 @@
 
+using Core.Utilities.Security.TokenEntities;
+
 namespace Presentation
 {
     public class Program
@@ -8,6 +10,9 @@ namespace Presentation
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

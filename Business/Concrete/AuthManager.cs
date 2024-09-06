@@ -3,6 +3,7 @@ using Business.Constants;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete.DataResultTypes;
 using Core.Utilities.Results.Concrete.ResultTypes;
+using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.TokenCreators;
 using Core.Utilities.Security.TokenEntities;
 using Entities.Concrete;
@@ -42,6 +43,13 @@ namespace Business.Concrete
             {
                 return new ErrorDataResult<User>(Messages.UserNotFound);
             }
+
+            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
+            {
+                return new ErrorDataResult<User>(Messages.PasswordError);
+            }
+
+            return new SuccessDataResult<User>(userToCheck, Messages.SuccessfulLogin);
         }
 
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto)
